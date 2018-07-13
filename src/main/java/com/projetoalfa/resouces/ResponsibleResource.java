@@ -16,8 +16,7 @@ public class ResponsibleResource {
 	
 	@Autowired
 	private ResponsibleService service;
-	
-	
+		
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Responsible obj = service.buscar(id);

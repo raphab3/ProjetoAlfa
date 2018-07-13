@@ -17,7 +17,6 @@ public class SectorResource {
 	@Autowired
 	private SectorService service;
 	
-	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Sector obj = service.buscar(id);
