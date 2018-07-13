@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity 
 public class Responsible implements Serializable {  
@@ -18,13 +17,18 @@ public class Responsible implements Serializable {
 	private Integer cod;
 	private String name;
 	private String email;
+	private String sector;
 	
-	@OneToOne
-	private Sector sector;
-
 	public Responsible() {
 	}
 
+	public Responsible(int id, Integer cod, String name, String email, String sector) {
+		this.id = (long) id;
+		this.cod = cod;
+		this.name = name;
+		this.email = email;
+		this.sector = sector;
+	}
 
 	public Long getId() {
 		return id;
@@ -58,14 +62,47 @@ public class Responsible implements Serializable {
 		this.email = email;
 	}
 
-
-	public Sector getSector() {
+	public String getSector() {
 		return sector;
 	}
 
-
-	public void setSector(Sector sector) {
+	public void setSector(String sector) {
 		this.sector = sector;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Responsible other = (Responsible) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+
+	
+	
 }
