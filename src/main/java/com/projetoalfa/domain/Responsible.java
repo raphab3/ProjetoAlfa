@@ -2,6 +2,7 @@ package com.projetoalfa.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,9 @@ public class Responsible implements Serializable {
 	
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
-	private Long id;
+	private Integer id;
 	private Integer cod;
+	@Column
 	private String name;
 	private String email;
 	private String sector;
@@ -22,19 +24,19 @@ public class Responsible implements Serializable {
 	public Responsible() {
 	}
 
-	public Responsible(int id, Integer cod, String name, String email, String sector) {
-		this.id = (long) id;
+	public Responsible(Integer id, Integer cod, String name, String email, String sector) {
+		this.id =  id;
 		this.cod = cod;
 		this.name = name;
 		this.email = email;
 		this.sector = sector;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -68,10 +70,6 @@ public class Responsible implements Serializable {
 
 	public void setSector(String sector) {
 		this.sector = sector;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override

@@ -1,30 +1,26 @@
 package com.projetoalfa.resouces;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projetoalfa.domain.Responsible;
+import com.projetoalfa.services.ResponsibleService;
 
 @RestController
 @RequestMapping(value="/responsibles")
 public class ResponsibleResource {
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Responsible> listar() {
-		
-		Responsible respo1 = new Responsible(1, 1, "Rafael", "raphab33@hotmail.com", "vendas");
-		Responsible respo2 = new Responsible(1, 001, "Carla", "raphab332hotmail.com", "Marketing");
-		
-		List<Responsible> lista = new ArrayList<>();
-		
-		lista.add(respo1);
-		lista.add(respo2);
-		
-		
-		return lista;
+	@Autowired
+	private ResponsibleService service;
+	
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<?> find(@PathVariable Integer id) {
+		Responsible obj = service.buscar(id);
+		return ResponseEntity.ok().body(obj);
 	}
 }

@@ -8,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Sector implements Serializable {  
@@ -26,9 +24,10 @@ public class Sector implements Serializable {
 	@ManyToMany
 	private List<Document> documents = new ArrayList<>();
 	
-	@OneToOne
-	@JoinColumn(name="responsible_id")
+	
 	private Responsible responsible;
+	
+	
 
 	public Sector() {
 	}

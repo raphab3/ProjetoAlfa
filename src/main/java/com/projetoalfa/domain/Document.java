@@ -7,10 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Document implements Serializable {  
@@ -24,9 +20,7 @@ public class Document implements Serializable {
 	private String content;
 	private Date date;
 	
-	@JsonIgnoreProperties("responsible")
-	@OneToOne
-	@JoinColumn(name="sector_id")
+	
 	private Sector sector;
 	
 	
