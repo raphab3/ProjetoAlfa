@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Sector implements Serializable {  
@@ -16,28 +20,37 @@ public class Sector implements Serializable {
 	
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
+	private Integer id;
 	private Integer cod;
 	private String email;
 	
-	@ManyToMany
-	private List<Document> documents = new ArrayList<>();
-	
-	
+	@OneToOne(cascade=CascadeType.ALL, mappedBy="sector")
 	private Responsible responsible;
 	
+	@ManyToMany
+	@JoinTable(name= "sector_documents",
+			joinColumns = @JoinColumn(name="sector_id"),
+			inverseJoinColumns = @JoinColumn(name = "document_id")
+			)
+	private List<Document> documents = new ArrayList<>();
 	
-
 	public Sector() {
 	}
 
+	public Sector(Integer id, Integer cod, String email, Responsible responsible) {
+		this.id = id;
+		this.cod = cod;
+		this.email = email;
+		this.responsible = responsible;
+	}
 
-	public Long getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -72,5 +85,34 @@ public class Sector implements Serializable {
 	public void setResponsible(Responsible responsible) {
 		this.responsible = responsible;
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sector other = (Sector) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+	
+	
 
 }

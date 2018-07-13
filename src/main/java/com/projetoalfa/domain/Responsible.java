@@ -2,34 +2,36 @@ package com.projetoalfa.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 @Entity 
 public class Responsible implements Serializable {  
 	private static final long serialVersionUID = 1L;
 	
-	@Id  
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  
+	@Id    
 	private Integer id;
 	private Integer cod;
-	@Column
 	private String name;
 	private String email;
-	private String sector;
+	
+	@OneToOne
+	@JoinColumn(name="sector_id")
+	@MapsId
+	private Sector sector;
 	
 	public Responsible() {
 	}
 
-	public Responsible(Integer id, Integer cod, String name, String email, String sector) {
-		this.id =  id;
+	public Responsible(Integer id, Integer cod, String name, String email) {
+		super();
+		this.id = id;
 		this.cod = cod;
 		this.name = name;
 		this.email = email;
-		this.sector = sector;
 	}
 
 	public Integer getId() {
@@ -64,11 +66,11 @@ public class Responsible implements Serializable {
 		this.email = email;
 	}
 
-	public String getSector() {
+	public Sector getSector() {
 		return sector;
 	}
 
-	public void setSector(String sector) {
+	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
 
