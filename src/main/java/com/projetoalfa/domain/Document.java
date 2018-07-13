@@ -23,6 +23,7 @@ public class Document implements Serializable {
 	private String content;
 	private Date date;
 	
+	
 	@ManyToMany(mappedBy="documents")
 	private List<Sector> sectors = new ArrayList<>();
 	

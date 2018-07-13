@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Sector implements Serializable {  
 	private static final long serialVersionUID = 1L;
@@ -24,9 +26,11 @@ public class Sector implements Serializable {
 	private Integer cod;
 	private String email;
 	
+	
 	@OneToOne(cascade=CascadeType.ALL, mappedBy="sector")
 	private Responsible responsible;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name= "sector_documents",
 			joinColumns = @JoinColumn(name="sector_id"),

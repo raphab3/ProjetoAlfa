@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity 
 public class Responsible implements Serializable {  
 	private static final long serialVersionUID = 1L;
@@ -18,6 +20,7 @@ public class Responsible implements Serializable {
 	private String name;
 	private String email;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="sector_id")
 	@MapsId
