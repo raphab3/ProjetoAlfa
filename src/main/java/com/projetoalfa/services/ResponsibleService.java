@@ -16,7 +16,7 @@ public class ResponsibleService {
 	public Responsible buscar(Integer id) {
 		
 		Responsible obj = repo.findOne(id);
-		if(id == null) {
+		if(obj == null) {
 			throw new ObjectNotFoundException("Object NotFound! id: " + id
 					+ ", Tipo: " + Responsible.class.getName());
 		}

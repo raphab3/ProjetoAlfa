@@ -15,7 +15,7 @@ public class DocumentService {
 	
 	public Document buscar(Integer id) {
 		Document obj = repo.findOne(id);
-		if(id == null) {
+		if(obj == null) {
 			throw new ObjectNotFoundException("Object NotFound! id: " + id
 					+ ", Tipo: " + Document.class.getName());
 		}
