@@ -22,4 +22,9 @@ public class ResponsibleService {
 		}
 		return obj;
 	}
+	
+	public Responsible insert(Responsible obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }

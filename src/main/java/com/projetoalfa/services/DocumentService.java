@@ -1,5 +1,7 @@
 package com.projetoalfa.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,17 @@ public class DocumentService {
 					+ ", Tipo: " + Document.class.getName());
 		}
 		return obj;
+	}
+	
+	public Document insert(Document obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+//	DTO
+	
+	
+	public List<Document> findAll(){
+		return repo.findAll();
 	}
 }

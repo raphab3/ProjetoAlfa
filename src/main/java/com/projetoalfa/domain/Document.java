@@ -1,5 +1,6 @@
 package com.projetoalfa.domain;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Document implements Serializable {  
 	private static final long serialVersionUID = 1L;   
+	
 	
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
