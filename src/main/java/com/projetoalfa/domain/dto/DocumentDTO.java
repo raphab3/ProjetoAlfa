@@ -5,6 +5,10 @@ import java.util.Date;
 
 import com.projetoalfa.domain.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class DocumentDTO implements Serializable {  
 	private static final long serialVersionUID = 1L;  
 	
@@ -23,37 +27,7 @@ public class DocumentDTO implements Serializable {
 		date = obj.getDate();
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	
 	
 	

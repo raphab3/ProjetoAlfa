@@ -31,8 +31,9 @@ public class DocumentService {
 	
 //	DTO
 	
-	
 	public List<Document> findAll(){
 		return repo.findAll();
 	}
+	
+	
 }

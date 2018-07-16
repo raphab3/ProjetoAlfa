@@ -35,8 +35,11 @@ public class ProjetoAlfaApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		
-		Responsible respon1 = new Responsible(null, 001, "Rafael", "raphab33@alfaconsultoria" );
-		Responsible respon2 = new Responsible(null, 002, "Carla", "carla@alfaconsultoria");
+		Sector sect1 = new Sector(null,"Vendas", 101, "marketing@alfaconsultoria");
+		Sector sect2 = new Sector(null, "Desenvolvimento", 103, "Devesenvolvimento@alfaconsultoria");
+		
+		Responsible respon1 = new Responsible(null, 001, "Rafael", "raphab33@alfaconsultoria", sect1 );
+		Responsible respon2 = new Responsible(null, 002, "Carla", "carla@alfaconsultoria", sect2);
 		
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -46,25 +49,22 @@ public class ProjetoAlfaApplication implements CommandLineRunner{
 		Document doc3 = new Document(null, "document03.pdf", "Assunto Desenvolvimento", sdf.parse("03/05/2018"));
 		
 
-		Sector sect1 = new Sector(null, 101, "marketing@alfaconsultoria", respon1);
-		Sector sect2 = new Sector(null, 103, "Devesenvolvimento@alfaconsultoria", respon2);
-		
 		sect1.getDocuments().addAll(Arrays.asList(doc1, doc2, doc3));
 		sect2.getDocuments().addAll(Arrays.asList(doc1, doc3));
 		
-		doc1.getSector().addAll(Arrays.asList(sect1, sect2));
-		doc2.getSector().addAll(Arrays.asList(sect1));
-		doc3.getSector().addAll(Arrays.asList(sect1, sect2));
+		doc1.getSectors().addAll(Arrays.asList(sect1, sect2));
+		doc2.getSectors().addAll(Arrays.asList(sect1));
+		doc3.getSectors().addAll(Arrays.asList(sect1, sect2));
 		
 		sect1.setResponsible(respon1);
 		sect2.setResponsible(respon2);
 		
-		respon1.setSector(sect1);
-		respon2.setSector(sect2);
+//		respon1.setSector(sect1);
+//		respon2.setSector(sect2);
 		
-
-		documentRepository.save(Arrays.asList(doc1, doc2, doc3));
+		
 		sectorRepository.save(Arrays.asList(sect1, sect2));
+		documentRepository.save(Arrays.asList(doc1, doc2, doc3));
 		responsibleRepository.save(Arrays.asList(respon1, respon2));
 		
 		

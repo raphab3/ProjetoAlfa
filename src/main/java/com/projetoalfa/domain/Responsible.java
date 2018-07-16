@@ -10,11 +10,15 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity 
+@Getter @Setter
 public class Responsible implements Serializable {  
 	private static final long serialVersionUID = 1L;
 	
-	@Id    
+	@Id
 	private Integer id;
 	private Integer cod;
 	private String name;
@@ -29,51 +33,11 @@ public class Responsible implements Serializable {
 	public Responsible() {
 	}
 
-	public Responsible(Integer id, Integer cod, String name, String email) {
-		super();
+	public Responsible(Integer id, Integer cod, String name, String email, Sector sector) {
 		this.id = id;
 		this.cod = cod;
 		this.name = name;
 		this.email = email;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getCod() {
-		return cod;
-	}
-
-	public void setCod(Integer cod) {
-		this.cod = cod;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Sector getSector() {
-		return sector;
-	}
-
-	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
 

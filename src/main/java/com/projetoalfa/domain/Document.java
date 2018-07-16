@@ -10,9 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
+@Getter @Setter
 public class Document implements Serializable {  
 	private static final long serialVersionUID = 1L;   
 	
@@ -26,7 +32,13 @@ public class Document implements Serializable {
 	private Date date;
 	
 	
-	@ManyToMany(mappedBy="documents")
+//	@ManyToMany(mappedBy="documents")
+	
+	@ManyToMany
+	@JoinTable(name= "sector_documents",
+			joinColumns = @JoinColumn(name="sector_id"),
+			inverseJoinColumns = @JoinColumn(name = "document_id")
+			)
 	private List<Sector> sectors = new ArrayList<>();
 	
 	
@@ -41,44 +53,5 @@ public class Document implements Serializable {
 		
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public List<Sector> getSector() {
-		return sectors;
-	}
-
-	public void setSector(List<Sector> sector) {
-		this.sectors = sector;
-	}
 	
 }
